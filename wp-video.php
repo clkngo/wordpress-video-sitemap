@@ -2,7 +2,7 @@
 /*
 Plugin Name: WordPress Video Sitemap
 
-Version: 0.0.2
+Version: 0.0.3
 
 Plugin URI: http://www.clkngo.com/wordpress/video/#utm_source=wpadmin&utm_medium=plugin&utm_campaign=wpseoplugin
 
@@ -50,7 +50,7 @@ if ( !defined( 'DB_NAME' ) ) {
 	die;
 }
 
-define ( 'WPVID_VERSION', '0.0.1' );
+define ( 'WPVID_VERSION', '0.0.2' );
 
 if ( !defined( 'WPVID_PATH' ) )
 	define( 'WPVID_PATH', plugin_dir_path( __FILE__ ) );

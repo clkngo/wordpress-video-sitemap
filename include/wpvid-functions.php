@@ -70,7 +70,7 @@ function wpvid_xml() {
 
 	foreach ( $posts as $p ) {
 
-		if ( preg_match_all( '/(\/youtu\.be\/|youtube\.com\/watch\?v\=)([a-zA-Z0-9\-_]*)/i', $p->post_content, $matches)) {
+		if ( preg_match_all( '/(\/youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/watch\?v\=)([a-zA-Z0-9\-_]*)/i', $p->post_content, $matches)) {
 /**
  * 		Normal embedded youtube video
  */
@@ -88,7 +88,11 @@ function wpvid_xml() {
 				$gdata = wpvid_youtube_only_data($id);
 
 				$video['id']			= $id;
-				$video['thumbnail'] 	= "http://i.ytimg.com/vi/$id/hqdefault.jpg";
+				$video['thumbnail'] 	= home_url()."/images/yt/$id";
+
+				// RewriteRule ^images/yt/(.*)$ http://i.ytimg.com/vi/$1/hqdefault.jpg [R=301,L]
+
+//				$video['thumbnail'] 	= "http://i.ytimg.com/vi/$id/hqdefault.jpg";
 				$video['player_loc']	= "http://www.youtube.com/v/$id";
 				$video['publish_date']	= date (DATE_W3C, strtotime ($p->post_date_gmt));
 				$video['permalink'] 	= get_permalink($p->id);
@@ -137,7 +141,6 @@ function wpvid_xml() {
 					if (!isset($videos[$id])) {
 						continue;
 					}
-
 
 					if ( preg_match( '`name=["\']([^"\']+)["\']`', $shortcode, $match ) ) {
 						$videos[$id]['title'] = $match[1];
